@@ -1,0 +1,340 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #e0f7ff, #ffffff); /* light blue to white */
+    color: #333; /* text color for readability */
+}
+
+
+
+.header-container {
+    background-color: #ffffff;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.site-header h1 {
+    font-size: 36px;
+    margin: 0;
+    font-weight: 700;
+    color: #1a73e8; /* modern blue accent */
+}
+
+.site-header .tagline {
+    font-size: 16px;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* --- Search Bar Styling --- */
+.search-container {
+    display: flex;
+    justify-content: center;    
+    margin: 20px 0;
+}
+
+.search-container input[type="text"] {
+    width: 300px;          
+    padding: 10px 15px;
+    border: 1px solid #ddd;  
+    border-radius: 5px 0 0 5px; 
+    outline: none;
+    font-size: 16px;
+    transition: border-color 0.2s;
+}
+
+.search-container input[type="text"]:focus {
+    border-color: #007bff;    
+}
+
+.search-container button {
+    padding: 10px 15px;
+    border: 1px solid #007bff;
+    border-left: none;    
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0; 
+    transition: background-color 0.2s;
+}
+
+.search-container button:hover {
+    background-color: #0056b3; 
+}
+
+
+/* --- Navbar Styling --- */
+nav {
+    display: flex;
+    justify-content: center;       
+    gap: 15px;
+    padding: 15px 0;
+    background-color: #fff;      
+    border-bottom: 1px solid #ddd; 
+    font-weight: 500;
+    font-size: 16px;
+}
+
+nav a {
+    text-decoration: none;       
+    color: #555;              
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: all 0.2s;
+}
+
+nav a:hover {
+    background-color: #007bff;   
+    color: #fff;                
+}
+
+
+/* --- Product Grid Container --- */
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* --- Individual Product Cards --- */
+.product {
+    flex: 0 0 calc(25% - 20px); /* 4 per row */
+    max-width: calc(25% - 20px);
+    background-color: #fff;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.product img {
+    width: 100%;
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+
+.product h3 {
+    margin: 10px 0 5px 0;
+    font-size: 20px;
+}
+
+.product p {
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    color: #444;
+}
+
+.product-links {
+    display: flex;
+    flex-wrap: wrap; /* allows buttons to wrap on smaller screens */
+    justify-content: center;
+    gap: 5px; /* spacing between buttons */
+    margin-top: 10px;
+}
+
+.product-links a {
+    text-decoration: none;     
+    color: #555;             
+    font-size: 14px;
+    padding: 5px 8px;        /* smaller padding for responsiveness */
+    border: 1px solid #ddd;     
+    border-radius: 5px;
+    transition: all 0.2s;
+    white-space: nowrap;       /* prevents text from breaking inside the button */
+}
+
+/* Hover effect */
+.product-links a:hover {
+    background-color: #007bff;
+    color: #fff;       
+    border-color: #007bff;  
+    text-decoration: underline;
+}
+
+/* Optional: make buttons smaller on very small screens */
+@media (max-width: 480px) {
+    .product-links a {
+        font-size: 13px;
+        padding: 4px 6px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .product {
+        flex: 0 0 calc(50% - 20px); /* 2 per row */
+        max-width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .product {
+        flex: 0 0 100%; /* 1 per row */
+        max-width: 100%;
+    }
+}
+
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+    margin-top: 40px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .product-grid {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product {
+        flex: 1 1 100%;
+    }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+.pagination a, .pagination span {
+  padding: 8px 12px;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.2s;
+  color: #333;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.pagination a:hover {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+.pagination .prev, .pagination .next {
+  font-weight: bold;
+}
+
+.pagination span {
+  border: none;
+  background: none;
+  color: #888;
+  cursor: default;
+}
+
+.footer-info {
+  background: #f8faff;
+  color: #333;
+  padding: 30px 20px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.footer-info .footer-container {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.footer-info p {
+  margin: 10px 0;
+  font-size: 15px;
+}
+
+.footer-info strong {
+  color: #1a73e8; /* subtle highlight */
+}
+
+.footer-info a {
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.footer-info a:hover {
+  text-decoration: underline;
+}
+
+.winter-banner {
+    width: 100%;
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.winter-banner h2 {
+    font-size: 32px;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+.winter-banner p {
+    font-size: 18px;
+    margin: 0 0 20px 0;
+}
+
+.shop-now-btn {
+    display: inline-block;
+    background-color: #fff;
+    color: #007bff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.shop-now-btn:hover {
+    background-color: #e0f7ff;
+    color: #0056b3;
+}
+
+
+
+.shop-now-btn {
+    display: inline-block;
+    background-color: #fff;
+    color: #007bff;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.shop-now-btn:hover {
+    background-color: #e0f7ff;
+    color: #0056b3;
+}
+
