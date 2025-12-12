@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Shop - Төлбөр төлөх</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="check.css">
+    
+</head>
+<body>
+
+<!-- Header -->
+<div class="header-container">
+    <header class="site-header">
+        <h1>Fashion Shop</h1>
+        <p class="tagline">🛒 Эрүүл, чанартай, загварлаг бүтээгдэхүүн 🛍️</p>
+    </header>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="index.html">Нүүр</a>
+    <a href="products.html">Бүтээгдэхүүн</a>
+    <a href="cart.html">Сагс</a>
+    <a href="wishlist.html">Таалагдсан</a>
+    <a href="categories.html">Ангилал</a>
+    <a href="login.html">Нэвтрэх</a>
+    <a href="register.html">Бүртгүүлэх</a>
+    <a href="checkout.html">Төлбөр төлөх</a>
+    <a href="contact.html">Холбоо барих</a>
+</nav>
+
+<!-- Search -->
+<div class="search-container">
+    <form action="search.html" method="get">
+        <input type="text" placeholder="Бүтээгдэхүүн хайх...">
+        <button type="submit">Хайх</button>
+    </form>
+</div>
+
+<main>
+    <h2 align="center">Төлбөр төлөх</h2>
+
+    <!-- Сонгосон бараа -->
+    <div id="checkout-items" class="product-grid"></div>
+    <p id="checkout-total" align="center"></p>
+
+    <form id="checkout-form" align="center">
+
+        <h3>Хувийн мэдээлэл</h3>
+        <label>Нэр:</label><br>
+        <input type="text" id="name" required><br><br>
+
+        <label>Хаяг:</label><br>
+        <input type="text" id="address" required><br><br>
+
+        <label>Утас:</label><br>
+        <input type="text" id="phone" required><br><br>
+
+        <h3>Төлбөрийн хэлбэр</h3>
+
+        <label><input type="radio" name="paytype" value="card" checked> 💳 Картын төлбөр</label><br>
+        <label><input type="radio" name="paytype" value="bank"> 🏦 Банкны шилжүүлэг</label><br><br>
+
+        <!-- Картын төлбөр -->
+        <div id="card-section">
+            <label>Картын дугаар:</label><br>
+            <input type="text" id="card-number" maxlength="16"><br><br>
+
+            <label>Он сар:</label><br>
+            <input type="text" id="card-exp" placeholder="MM/YY"><br><br>
+
+            <label>CVV код:</label><br>
+            <input type="password" id="card-cvv" maxlength="3"><br><br>
+        </div>
+
+        <!-- Банкны шилжүүлэг -->
+        <div id="bank-section" style="display:none;">
+            <label>Банк сонгох:</label><br>
+            <select id="bank-choice">
+                <option value="khan">Хаан банк</option>
+                <option value="tdb">Худалдаа хөгжлийн банк</option>
+                <option value="state">Төрийн банк</option>
+                <option value="golomt">Голомт банк</option>
+                <option value="bogd">Богд банк</option>
+            </select>
+            <br><br>
+
+            <h3>QR кодоор шилжүүлэг хийх</h3>
+            <img id="bank-qr" src="qr-default.png" width="200">
+        </div>
+
+        <br>
+        <input type="submit" value="Төлбөр хийх" id="pay-btn">
+    </form>
+</main>
+
+<script>
+// CART ITEMS
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('checkout-items');
+    const totalEl = document.getElementById('checkout-total');
+    const items = JSON.parse(localStorage.getItem('cart') || '[]');
+
+    if(items.length === 0){
+        container.innerHTML = '<p>Сагс хоосон байна.</p>';
+        return;
+    }
+
+    let total = 0;
+    items.forEach((item, index) => {
+        total += item.price * item.quantity;
+
+        const div = document.createElement('div');
+        div.classList.add('product');
+        div.innerHTML = `
+            <img src="${item.img}" width="100">
+            <h3>${item.name}</h3>
+            <p>Үнэ: ${item.price}₮</p>
+            <p>Тоо: ${item.quantity}</p>
+            <label>Хэмжээ:</label>
+            <select class="item-size">
+                <option>S</option><option>M</option><option>L</option>
+                <option>XL</option><option>XXL</option>
+            </select>
+        `;
+        container.appendChild(div);
+    });
+
+    totalEl.innerHTML = `<b>Нийт төлбөр: ${total} ₮</b>`;
+
+    // Төлбөрийн хэлбэр солигдох
+    document.querySelectorAll("input[name='paytype']").forEach(radio => {
+        radio.addEventListener("change", e => {
+            document.getElementById("card-section").style.display = 
+                e.target.value === "card" ? "block" : "none";
+
+            document.getElementById("bank-section").style.display = 
+                e.target.value === "bank" ? "block" : "none";
+        });
+    });
+
+    // Банк сонгоход QR солигдоно
+    document.getElementById("bank-choice").addEventListener("change", e => {
+        const bank = e.target.value;
+        document.getElementById("bank-qr").src = bank + "-qr.png"; 
+    });
+
+    // FORM SUBMIT
+    document.getElementById('checkout-form').addEventListener('submit', e => {
+        e.preventDefault();
+        alert("Төлбөр амжилттай хийгдлээ!");
+        localStorage.removeItem('cart');
+        window.location.href = "index.html";
+    });
+
+});
+
+</script>
+
+
+</body>
+</html>
